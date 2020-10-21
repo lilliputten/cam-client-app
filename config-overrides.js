@@ -24,7 +24,7 @@ const { // see https://github.com/arackaf/customize-cra/blob/master/api.md
 
 const srcRoot = process.cwd();
 const prjRoot = srcRoot.replace(/\\/g, '/');
-const configCss = {}; // require('./src/config/__css/config__css');
+const configCss = require('./src/config/css');
 const postcssPlugins = [
     require('postcss-flexbugs-fixes'),
     require('postcss-import'),
