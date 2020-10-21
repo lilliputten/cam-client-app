@@ -5,9 +5,5 @@
   "timetag": "201021-0319",
   "main": "index.html",
   "author": "lilliputten <igor@lilliputten.ru>",
-  "license": "MIT",
-  "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
-  }
+  "license": "MIT"
 }
