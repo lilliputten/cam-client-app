@@ -230,7 +230,7 @@ module.exports = function(webpackEnv) {
               // Pending further investigation:
               // https://github.com/terser-js/terser/issues/120
               inline: 2,
-              drop_debugger: false, // Disable removing of `debugger` statements in production build
+              drop_debugger: false, // Disable removing of `debugger` statements in production build (see `https://github.com/terser/terser`)
             },
             mangle: {
               safari10: true,
