@@ -1,6 +1,6 @@
 #!/bin/sh
 # @desc Publish (and make if absent) dist build
-# @changed 2020.10.21, 03:20
+# @changed 2020.10.21, 03:47
 
 # Import config variables (expected variables `$DIST_REPO` and `$PUBLISH_FOLDER`)...
 # DIST_REPO="git@github.com:lilliputten/YouFaceDist.git"
@@ -21,7 +21,7 @@ TIMETAG=`cat build-timetag.txt`
 VERSION=`cat build-version.txt`
 BUILDTAG=`cat build-tag.txt`
 
-echo "Syncing build ($VERSION, $TIMESTAMP)..."
+echo "Syncing build $BUILDTAG..."
 
 # TODO: Compare actual and previously published versions? (The git is checking for changes itself anyway.)
 
@@ -34,7 +34,4 @@ cd "$PUBLISH_FOLDER" && \
     | sed "s/<link rel/<link crossorigin=\"use-credentials\" rel/g" \
     > index.html && \
   cd .. && \
-  echo OK
-    # | sed "s/<html /<!-- v.${VERSION}-${TIMETAG} -->\0/" \
-    # | sed "s/<link rel/<link crossorigin=\"use-credentials\" rel/" \
-
+  echo "Synced build $BUILDTAG"

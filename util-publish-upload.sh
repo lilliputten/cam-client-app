@@ -1,6 +1,6 @@
 #!/bin/sh
 # @desc Publish (and make if absent) dist build
-# @changed 2020.10.19, 02:20
+# @changed 2020.10.21, 03:47
 
 # Import config variables (expected variables `$DIST_REPO` and `$PUBLISH_FOLDER`)...
 # DIST_REPO="git@github.com:lilliputten/YouFaceDist.git"
@@ -19,14 +19,15 @@ test -d build || npm run -s build
 TIMESTAMP=`cat build-timestamp.txt`
 TIMETAG=`cat build-timetag.txt`
 VERSION=`cat build-version.txt`
+BUILDTAG=`cat build-tag.txt`
 
-echo "Upload build ($VERSION, $TIMESTAMP)..."
+echo "Upload build $BUILDTAG..."
 
 # TODO: Compare actual and previously published versions? (The git is checking for changes itself anyway.)
 
 cd "$PUBLISH_FOLDER" && \
   git add . -Av && \
-  git commit -am "Build v.$VERSION, $TIMESTAMP ($TIMETAG)" && \
+  git commit -am "Build $BUILDTAG" && \
   git push && \
   cd .. && \
-  echo OK
+  echo "Uploaded build $BUILDTAG"
