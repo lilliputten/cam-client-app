@@ -10,9 +10,13 @@ import 'react-app-polyfill/stable';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.pcss';
-import App from './App';
+
 import * as serviceWorker from './serviceWorker';
+
+import './index.pcss';
+
+import App from 'App/App'; // Worked
+// import App from 'App'; // Must works with directory-resolver (TODO!)
 
 ReactDOM.render(
   <React.StrictMode>

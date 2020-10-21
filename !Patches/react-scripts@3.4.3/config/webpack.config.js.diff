@@ -1,5 +1,5 @@
 --- webpack.config.js.orig	1985-10-26 11:15:00.000000000 +0300
-+++ webpack.config.js	2020-10-20 23:54:28.738699800 +0300
++++ webpack.config.js	2020-10-21 03:37:03.727900500 +0300
 @@ -55,7 +55,7 @@
  const useTypeScript = fs.existsSync(paths.appTsConfig);
  
@@ -37,7 +37,15 @@
        // webpack uses `publicPath` to determine where the app is being served from.
        // It requires a trailing slash, or the file assets will get an incorrect path.
        // We inferred the "public path" (such as / or /my-project) from homepage.
-@@ -374,7 +374,7 @@
+@@ -230,6 +230,7 @@
+               // Pending further investigation:
+               // https://github.com/terser-js/terser/issues/120
+               inline: 2,
++              drop_debugger: false, // Disable removing of `debugger` statements in production build
+             },
+             mangle: {
+               safari10: true,
+@@ -374,7 +375,7 @@
                loader: require.resolve('url-loader'),
                options: {
                  limit: imageInlineSizeLimit,
@@ -46,7 +54,7 @@
                },
              },
              // Process application JS with Babel.
-@@ -548,7 +548,7 @@
+@@ -548,7 +549,7 @@
                // by webpacks internal loaders.
                exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
                options: {
@@ -55,7 +63,7 @@
                },
              },
              // ** STOP ** Are you adding a new loader?
-@@ -621,8 +621,8 @@
+@@ -621,8 +622,8 @@
          new MiniCssExtractPlugin({
            // Options similar to the same options in webpackOptions.output
            // both options are optional

@@ -1,6 +1,13 @@
 # Cam flask client react app
 
 
+## Build info (auto-generated)
+
+- Version: 0.0.2
+- Last changes timestamp: 2020.10.21, 03:19
+- Last changes timetag: 201021-0319
+
+
 ## React spa app
 
 The project was bootstrapped with:

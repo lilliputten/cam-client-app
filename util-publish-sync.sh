@@ -1,6 +1,6 @@
 #!/bin/sh
 # @desc Publish (and make if absent) dist build
-# @changed 2020.10.21, 00:33
+# @changed 2020.10.21, 03:20
 
 # Import config variables (expected variables `$DIST_REPO` and `$PUBLISH_FOLDER`)...
 # DIST_REPO="git@github.com:lilliputten/YouFaceDist.git"
@@ -19,6 +19,7 @@ test -d build || npm run -s build
 TIMESTAMP=`cat build-timestamp.txt`
 TIMETAG=`cat build-timetag.txt`
 VERSION=`cat build-version.txt`
+BUILDTAG=`cat build-tag.txt`
 
 echo "Syncing build ($VERSION, $TIMESTAMP)..."
 
@@ -29,7 +30,7 @@ cd "$PUBLISH_FOLDER" && \
   rm -Rf * && \
   cp -Rfu ../build-*.txt ../static-build-files/* ../build/* . && \
   cat index.html \
-    | sed "s/<html /<!-- v.${VERSION}-${TIMETAG} -->\0/" \
+    | sed "s/<html /<!-- ${BUILDTAG} -->\0/" \
     | sed "s/<link rel/<link crossorigin=\"use-credentials\" rel/g" \
     > index.html && \
   cd .. && \

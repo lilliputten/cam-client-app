@@ -1,11 +1,25 @@
 /** @module App
  *  @since 2020.10.18, 21:16
- *  @changed 2020.10.18, 22:17
+ *  @changed 2020.10.21, 01:39
  */
 
 import React from 'react';
 import logo from './logo.svg';
 import './App.pcss';
+
+// import config from 'config/index.js';
+// import buildConfig from './config/build.js'; // Worked
+// import buildConfig from 'config/build.js'; // Worked
+// import config from 'config';
+// import config from 'config';
+// import { build } from 'config';
+
+const { build } = require('config');
+
+
+console.log('isDevServer:', build.isDevServer);
+debugger;
+
 
 function App() {
   return (

@@ -4,19 +4,28 @@
  */
 
 /* eslint-env es6, node, commonjs */
+
 // const rewireTypescript = require('react-app-rewire-typescript');
-const rewirePostcss = require('react-app-rewire-postcss');
+// const rewirePostcss = require('react-app-rewire-postcss');
 
-const
+const path = require('path');
 
-  path = require('path'),
+const { // see https://github.com/arackaf/customize-cra/blob/master/api.md
+  override,
+  adjustStyleLoaders,
+  addPostcssPlugins,
+  // addBabelPlugins,
+  // addBabelPlugin,
+  // addExternalBabelPlugins,
+  // addExternalBabelPlugin,
+  // addDecoratorsLegacy,
+  // fixBabelImports,
+} = require('customize-cra');
 
-  srcRoot = process.cwd(),
-  prjRoot = srcRoot.replace(/\\/g, '/'),
-
-  configCss = {}, // require('./src/config/__css/config__css'),
-
-  postcssPlugins = [
+const srcRoot = process.cwd();
+const prjRoot = srcRoot.replace(/\\/g, '/');
+const configCss = {}; // require('./src/config/__css/config__css');
+const postcssPlugins = [
     require('postcss-flexbugs-fixes'),
     require('postcss-import'),
     require('postcss-mixins')({
@@ -47,14 +56,49 @@ const
     }),
     require('postcss-reporter')(),
     require('postcss-normalize')(),
-  ]
-;
+  ];
 
-module.exports = (config/* , env */) => {
-  // config = rewireTypescript(config, env);
-  config = rewirePostcss(config, {
-    parser: require('postcss-scss'),
-    plugins: () => postcssPlugins,
-  });
-  return config;
-};
+/* // Old overriding method -- with `react-app-rewire-*`
+ * module.exports = (config[> , env <]) => {
+ *   // config = rewireTypescript(config, env);
+ *   config = rewirePostcss(config, {
+ *     parser: require('postcss-scss'),
+ *     plugins: () => postcssPlugins,
+ *   });
+ *   return config;
+ * };
+ */
+
+// terser: drop_debugger: false
+
+module.exports = override( // see https://github.com/arackaf/customize-cra/blob/master/api.md
+  addPostcssPlugins(postcssPlugins),
+  adjustStyleLoaders(({ use: [ , css, postcss, resolve /* , processor */ ] }) => {
+    css.options.sourceMap = true;
+    postcss.options.sourceMap = true;
+    if (resolve) {
+      resolve.options.sourceMap = true;
+    }
+    postcss.options.parser = require('postcss-scss');
+  }),
+  /* // NOTE: Absolute imports applyes by `tsconfig.json` directive `baseDir`, not `babel-plugin-module-resolver`
+   * // [Absolute imports with Create React App](https://medium.com/hackernoon/absolute-imports-with-create-react-app-4c6cfb66c35d)
+   * addExternalBabelPlugin([
+   *   require.resolve('babel-plugin-module-resolver'),
+   *   {
+   *     root: [ './src' ],
+   *     alias: {
+   *       config: [ './src/config' ],
+   *     },
+   *   },
+   * ]),
+   */
+  /* addExternalBabelPlugin([ // NOTE: Not working! TODO, R&D!
+   *   'babel-plugin-directory-resolver',
+   *   {
+   *     extensions: [ '.js', '.ts', '.tsx' ],
+   *     moduleFileExtensions: [ '.js', '.ts', '.tsx' ],
+   *   },
+   * ]),
+   */
+);

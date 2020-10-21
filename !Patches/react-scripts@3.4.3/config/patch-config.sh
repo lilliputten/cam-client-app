@@ -4,7 +4,9 @@
 # @changed 2020.10.19, 00:44
 #
 # Patching for:
-# - Adding pcss (postcss-loader) extension.
+# - Adding `.pcss` (postcss-loader) extension.
+# - Use `assets` instead `static` folder location (fixing flask svg serving bug on production).
+# - Disable removing of `debugger` statements in production build (terser options).
 
 # Root folder
 ROOTCD="node_modules"
