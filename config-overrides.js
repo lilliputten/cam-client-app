@@ -22,15 +22,17 @@ const { // see https://github.com/arackaf/customize-cra/blob/master/api.md
   // fixBabelImports,
 } = require('customize-cra');
 
-const srcRoot = process.cwd();
-const prjRoot = srcRoot.replace(/\\/g, '/');
-const configCss = require('./src/config/css');
+const rootPath = process.cwd();
+// const rootPrjRoot = rootPath.replace(/\\/g, '/');
+
+const configCss = require(path.join(rootPath, 'src/config/css'));
+
 const postcssPlugins = [
     require('postcss-flexbugs-fixes'),
     require('postcss-import'),
-    require('postcss-mixins')({
-      mixinsDir: path.join(prjRoot, 'src', 'blocks', '!mixins'),
-    }), // https://github.com/postcss/postcss-mixins
+    // require('postcss-mixins')({ // TODO?
+    //   mixinsDir: path.join(rootPath, 'src/!mixins'),
+    // }), // https://github.com/postcss/postcss-mixins
     require('postcss-random'), // https://www.npmjs.com/package/postcss-random
     require('postcss-each'),
     require('postcss-for'),

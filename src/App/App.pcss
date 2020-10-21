@@ -7,7 +7,7 @@
   // border: 1px solid green; // DEBUG
   text-align: center;
   &-logo {
-    border: 1px solid $infoColor; // DEBUG: css config variables
+    // border: 1px solid $testColor; // DEBUG: css config variables
     height: 40vmin;
     pointer-events: none;
   }
@@ -17,17 +17,21 @@
     }
   }
   &-header {
-    background-color: #282c34;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: white;
   }
   &-link {
     color: #61dafb;
+  }
+  &_dark {
+    & ^&-header {
+      background-color: #282c34;
+      color: white;
+    }
   }
 }
 

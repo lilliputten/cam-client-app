@@ -4,39 +4,50 @@
  */
 
 import React from 'react';
+
+import { Button } from '@material-ui/core';
+
 import logo from './logo.svg';
+
+import { cn } from '@bem-react/classname';
+
 import './App.pcss';
 
-// import config from 'config/index.js';
-// import buildConfig from './config/build.js'; // Worked
-// import buildConfig from 'config/build.js'; // Worked
-// import config from 'config';
-// import config from 'config';
-// import { build } from 'config';
+const cnApp = cn('App');
 
 const { build } = require('config');
 
 
+// DEBUG:
 console.log('isDevServer:', build.isDevServer);
-debugger;
+// debugger;
 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className={cnApp({ dark: false })}>
+      <header className={cnApp('header')}>
+        <img src={logo} className={cnApp('logo')} alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
+        {/*
         <a
-          className="App-link"
+          className={cnApp('link')}
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
           Learn React
         </a>
+        */}
+        <Button
+          variant="contained"
+          color="primary"
+          href="https://reactjs.org"
+        >
+          Hello World
+        </Button>
       </header>
     </div>
   );

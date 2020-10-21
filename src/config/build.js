@@ -5,7 +5,7 @@
 
 // const DEBUG = process.env.DEBUG
 
-const isDevServer = typeof module === 'object' && !!(module.hot && !!module.hot.active); // From `config.build.isDevServer`
+const isDevServer = typeof module === 'object' && !!(module.hot && module.hot.active); // From `config.build.isDevServer`
 const isTesting = (typeof jest === 'object');
 const DEBUG = isTesting ? 'test' : isDevServer;
 
