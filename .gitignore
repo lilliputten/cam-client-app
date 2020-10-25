@@ -3,6 +3,7 @@ local-image.*
 test-image.*
 
 # Unused & temp files
+.gitmodules
 package-lock.json
 \!UNUSED
 ~*

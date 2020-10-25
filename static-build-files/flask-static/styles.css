@@ -1,7 +1,11 @@
 /** @module styles.css
  * @since 2020.10.01, 00:41
- * @changed 2020.10.01, 00:41
+ * @changed 2020.10.26, 02:14
  */
+
+.no-styles-warning {
+  display: none;
+}
 
 .content {
   /* border: 1px solid red; */

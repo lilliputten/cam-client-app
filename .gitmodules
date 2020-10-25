@@ -1,3 +1,0 @@
-[submodule "publish"]
-	path = publish
-	url = git@github.com:lilliputten/cam-client-app-build.git
