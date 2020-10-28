@@ -8,6 +8,16 @@
 - Last changes timetag: 201021-0319
 
 
+## Basic api structure (server v.0.0.5+):
+
+- GET `/api/images`: Get all images list.
+- GET `/api/images/recent`: Get recent image info.
+- GET `/api/images/{id}`: Get specific image info.
+- POST `/api/images/add`: Add (upload) new image. (Duplicates `/upload`?)
+- DELETE `/api/images`: Delete all images.
+- DELETE `/api/images/{id}`: Delete specific image.
+
+
 ## React spa app
 
 The project was bootstrapped with:
@@ -18,5 +28,5 @@ The project was bootstrapped with:
 
 
 <!--
- @changed 2020.10.18, 20:48
+ @changed 2020.10.28, 03:00
 -->
